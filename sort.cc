@@ -1,15 +1,16 @@
 #include <errno.h>
-#include <iostream.h>
-#include <malloc.h>
+#include <iostream>
 #include <stdio.h>
-#include <fstream.h>
-#include <strstream.h>
+#include <fstream>
+#include <strstream>
 #include <stdlib.h>
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <unistd.h>
 #include <math.h>
 #include <string.h>
+
+using namespace std;
 
 char freqf[300];
 const int lineSize=1024;
@@ -25,7 +26,7 @@ public:
    ~Itemset(){ delete [] iary; }
    int size(){ return sz; }
    int *iset(){ return iary; }
-   int& operator [] (unsigned int index){ return iary[index]; }   
+   int& operator [] (unsigned int index){ return iary[index]; }
    friend ostream& operator << (ostream& fout, Itemset& iset);
 };
 
@@ -47,7 +48,7 @@ int cmpiset(const void *a, const void *b)
 
    if (ia->size() > ib->size()) return 1;
    else if (ia->size() < ib->size()) return -1;
-   
+
    for (int i=0; i < ia->size() && i < ib->size(); i++){
       if ((*ia)[i] > (*ib)[i]) return 1;
       else if ((*ia)[i] < (*ib)[i]) return -1;
@@ -69,18 +70,18 @@ int cmpint(const void *a, const void *b)
    else if (ia < ib) return -1;
    else return 0;
 }
- 
+
 
 void getitemset(char *inBuf, int inSize)
 {
    char inStr[wdSize];
    static int tmpary[1000];
    int tmpsz;
-   
+
    int it, sup;
    istrstream ist(inBuf, inSize);
 
-   if (inBuf[0] != '0' && 
+   if (inBuf[0] != '0' &&
        inBuf[0] != '1' &&
        inBuf[0] != '2' &&
        inBuf[0] != '3' &&
@@ -93,8 +94,8 @@ void getitemset(char *inBuf, int inSize)
       cout << inBuf << endl;
       return;
    }
-   
-   
+
+
    // it is a digit, i.e., start of itemset
    tmpsz = 0;
    while(ist >> inStr){
@@ -106,13 +107,13 @@ void getitemset(char *inBuf, int inSize)
          it = atoi(inStr);
          tmpary[tmpsz++] = it;
       }
-      
-      
+
+
       //it = atoi(inStr);
       //cout << it << endl;
       //tmpary[tmpsz++] = it;
    }
-   
+
    Itemset *fit = new Itemset(tmpsz,sup);
    for (int i=0; i < tmpsz; i++)
       (*fit)[i] = tmpary[i];
@@ -129,14 +130,14 @@ void getitemset(char *inBuf, int inSize)
 int main(int argc, char **argv)
 {
    int i;
-   
+
    sprintf(freqf,"%s", argv[1]);
-   
+
    isetary = (Itemset **) malloc (sizeof(Itemset*)*isettotsz);
-   
+
    char inBuf[lineSize];
    int inSize;
-   
+
    ifstream fin(freqf, ios::in);
    if (!fin){
       perror("cannot open freq seq file");
@@ -147,13 +148,13 @@ int main(int argc, char **argv)
       inSize = fin.gcount();
       getitemset(inBuf, inSize);
    }
-   
-   cerr << "\n\n<<<<<<<<<<<<<< COMPLETE SORT <<<<<<<<<<<<<<<<<<<<<<<<<<\n";
+
+   cout << "\n\n<<<<<<<<<<<<<< COMPLETE SORT <<<<<<<<<<<<<<<<<<<<<<<<<<\n";
    isetary = (Itemset **) realloc(isetary, isetarysz*sizeof(Itemset *));
-   
+
    qsort(isetary, isetarysz, sizeof(Itemset *), cmpiset);
-   
+
    for (i=0; i < isetarysz; i++)
-      cerr << *isetary[i];
+      cout << *isetary[i];
 }
 

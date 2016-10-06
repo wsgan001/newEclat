@@ -5,7 +5,7 @@ HDRS = eclat.h timetrack.h calcdb.h eqclass.h stats.h\
 OBJS = calcdb.o eqclass.o stats.o maximal.o eclat.o enumerate.o\
 	chashtable.o
 LIBS = 
-TARGET = eclat
+TARGET = eclat sort
 
 default: $(TARGET)
 
@@ -15,6 +15,9 @@ clean:
 eclat: $(OBJS) $(HDRS)
 	$(CC) $(CFLAGS) -o eclat $(OBJS) $(LIBS)
 #	strip $(TARGET)
+
+sort: sort.cc
+	$(CC) $(CFLAGS) -o sort sort.cc
 
 makebin: 
 	$(CC) $(CFLAGS) -o makebin makebin.cc

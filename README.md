@@ -1,3 +1,4 @@
+#eclat
 This code integrates eclat, charm and genmax into one. Note, this is
 just a clean version of the individual programs, and as such not
 optimal. For instance the original code for Charm and GenMax are
@@ -52,3 +53,16 @@ file. The format of this file is as follows:
 
 I have provided a utility that converts from the ASCII IBM data format
 to the binary format. Use it as: makebin XXX.ascii XXX.data
+
+A typical run can be something like:
+./eclat -i T10I4D100K.data -S 1000 -a 1 -o > SAVEFILE
+where the output will be written to SAVEFILE
+
+#sort
+Once you have saved the output, you can sort the patterns by increasing
+length. After some meta-info, the sorted output has one pattern per
+line, along with its frequency, in the format:
+ITEMSET - SUPPORT
+
+An example run can be:
+./sort SAVEFILE > SORTEDFILE
