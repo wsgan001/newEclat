@@ -43,6 +43,7 @@ minimum support, e.g., -S 2 would mean that the minimum support is 2 (as opposed
 The input database is assumed to be ascii (use -b for binary format), with two input formats. 
 
 The IBM datagen format is
+
         # CID TID #ITEMS LIST_OF_ITEMS
 e.g.    1   1   4       0 1 4 6
         2   2   3       4 7 9
@@ -50,6 +51,7 @@ items in the list must be sorted in increasing order, one per line (omit
 the header)
 
 The NO OFFSET format is:
+
         # LIST_OF_ITEMS
 e.g.     0 1 4 6
          4 7 9
