@@ -32,12 +32,14 @@ please ask for the original code from me.
 
          -c 0 do not eliminate non-closed sets (if -a 1 is used)
          -c 1 eliminate non-closed sets (if -a 1 is used)
+
+         -S absolute MINSUP (not as a percentage)
          
 MINSUP is in fractions, i.e., specify 0.5 if you want 50% minsup or
-0.01 if you want 1% support.
+0.01 if you want 1% support. You can also use -S with an absolute
+minimum support, e.g., -S 2 would mean that the minimum support is 2 (as opposed to a percentage).
 
-the input database must be in binary, with the following format per
-row. This is the IBM datagen format.
+the input database is assumed to be ascii (use -b for binary format) , with the following format per row. This is the IBM datagen format.
 
         CID TID #ITEMS LIST_OF_ITEMS
 e.g.    1   1   4       0 1 4 6
