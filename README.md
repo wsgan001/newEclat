@@ -45,7 +45,7 @@ The input database is assumed to be ascii (use -b for binary format), with two i
 The IBM datagen format is
 
         # CID TID #ITEMS LIST_OF_ITEMS
-e.g.    1   1   4       0 1 4 6
+        1   1   4       0 1 4 6
         2   2   3       4 7 9
 items in the list must be sorted in increasing order, one per line (omit
 the header)
@@ -53,7 +53,7 @@ the header)
 The NO OFFSET format is:
 
         # LIST_OF_ITEMS
-e.g.     0 1 4 6
+         0 1 4 6
          4 7 9
 items in the list must be sorted in increasing order (omit the header).
 To run a file in the NO Offset format use the -x flag.
