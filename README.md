@@ -34,17 +34,28 @@ please ask for the original code from me.
          -c 1 eliminate non-closed sets (if -a 1 is used)
 
          -S absolute MINSUP (not as a percentage)
+         -x No offset (omit CID TID)
          
 MINSUP is in fractions, i.e., specify 0.5 if you want 50% minsup or
 0.01 if you want 1% support. You can also use -S with an absolute
 minimum support, e.g., -S 2 would mean that the minimum support is 2 (as opposed to a percentage).
 
-the input database is assumed to be ascii (use -b for binary format) , with the following format per row. This is the IBM datagen format.
+The input database is assumed to be ascii (use -b for binary format), with two input formats. 
 
-        CID TID #ITEMS LIST_OF_ITEMS
+The IBM datagen format is
+        # CID TID #ITEMS LIST_OF_ITEMS
 e.g.    1   1   4       0 1 4 6
         2   2   3       4 7 9
-items in the list must be sorted in increasing order
+items in the list must be sorted in increasing order, one per line (omit
+the header)
+
+The NO OFFSET format is:
+        # LIST_OF_ITEMS
+e.g.     0 1 4 6
+         4 7 9
+items in the list must be sorted in increasing order (omit the header).
+To run a file in the NO Offset format use the -x flag.
+
 
 Finally the summary of the run is stored in the summary.out
 file. The format of this file is as follows:
